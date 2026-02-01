@@ -1,0 +1,24 @@
+{
+  "projectName": "coordinator-app",
+  "mode": "file-router",
+  "typescript": true,
+  "packageManager": "pnpm",
+  "tailwind": true,
+  "addOnOptions": {
+    "drizzle": {
+      "database": "sqlite"
+    }
+  },
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "nitro",
+    "start",
+    "compiler",
+    "drizzle",
+    "t3env",
+    "better-auth",
+    "tanstack-query"
+  ]
+}
