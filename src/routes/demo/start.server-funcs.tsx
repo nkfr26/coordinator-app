@@ -2,7 +2,7 @@ import fs from "node:fs";
 import { useCallback, useState } from "react";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
-import z from "zod";
+import * as v from "valibot";
 
 /*
 const loggingMiddleware = createMiddleware().server(
@@ -18,13 +18,14 @@ const loggedServerFunction = createServerFn({ method: "GET" }).middleware([
 
 const TODOS_FILE = "todos.json";
 
-const todoSchema = z.object({
-  id: z.number(),
-  name: z.string(),
+const todoSchema = v.object({
+  id: v.number(),
+  name: v.string(),
 });
 
 async function readTodos() {
-  return z.array(todoSchema).parse(
+  return v.parse(
+    v.array(todoSchema),
     JSON.parse(
       await fs.promises.readFile(TODOS_FILE, "utf-8").catch(() =>
         JSON.stringify(

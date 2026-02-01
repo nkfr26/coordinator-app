@@ -1,11 +1,11 @@
 import { createEnv } from "@t3-oss/env-core";
-import { z } from "zod";
+import * as v from "valibot";
 
 export const env = createEnv({
   server: {
-    DATABASE_URL: z.url(),
-    BETTER_AUTH_URL: z.url(),
-    BETTER_AUTH_SECRET: z.string().min(1),
+    DATABASE_URL: v.pipe(v.string(), v.url()),
+    BETTER_AUTH_URL: v.pipe(v.string(), v.url()),
+    BETTER_AUTH_SECRET: v.pipe(v.string(), v.minLength(1)),
   },
 
   /**
@@ -15,7 +15,7 @@ export const env = createEnv({
   clientPrefix: "VITE_",
 
   client: {
-    VITE_APP_TITLE: z.string().min(1).optional(),
+    VITE_APP_TITLE: v.optional(v.pipe(v.string(), v.minLength(1))),
   },
 
   /**
